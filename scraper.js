@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer')
+const fs = require('fs')
 
 let songs = []
 
@@ -43,7 +44,7 @@ const scraper = async () => {
   const page = await browser.newPage();
   await page.goto('https://chillhop.com/releases/', {waitUntil: 'networkidle0'})
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 500; i++) {
     const title = await getTitle(page)
     const author = await getArtist(page)
     const path = await getUrl(page)
@@ -54,7 +55,12 @@ const scraper = async () => {
 
   await browser.close();
 
+  // save as json file
+  fs.writeFile('songs.json', JSON.stringify(songs), (err) => {
+    if (err) throw err;
+    console.log('The file has been saved!');
+  })
+
 }
 
 scraper()
-  .then(() => console.log(songs))
