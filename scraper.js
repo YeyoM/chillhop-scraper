@@ -44,7 +44,7 @@ const scraper = async () => {
   const page = await browser.newPage();
   await page.goto('https://chillhop.com/releases/', {waitUntil: 'networkidle0'})
 
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < 10; i++) {
     const title = await getTitle(page)
     const author = await getArtist(page)
     const path = await getUrl(page)
