@@ -8,6 +8,7 @@ const getTitle = async (page) => {
     const title = document.querySelector('.jp-title').innerText
     return title
   })
+  console.log(title)
   return title
 }
 
@@ -16,6 +17,7 @@ const getArtist = async (page) => {
     const artist = document.querySelector('.jp-artists').innerText
     return artist
   })
+  console.log(artist)
   return artist
 }
 
@@ -24,18 +26,21 @@ const getUrl = async (page) => {
     const url = document.querySelector('audio').src
     return url
   })
+  console.log(url)
   return url
 }
 
 const clickNext = async (page) => {
   const nextBtn = await page.$('.dkplayer-next')
   await nextBtn.evaluate(nextBtn => nextBtn.click())
+  console.log('click next done')
 }
 
 // get id in base or url
 const getId = (url) => {
   const halfId = url.split('/').pop()
   id = halfId.slice(5)
+  console.log(id)
   return id
 }
 
@@ -44,7 +49,9 @@ const scraper = async () => {
   const page = await browser.newPage();
   await page.goto('https://chillhop.com/releases/', {waitUntil: 'networkidle0'})
 
-  for (let i = 0; i < 10; i++) {
+  console.log('page opened')
+
+  for (let i = 0; i < 15; i++) {
     const title = await getTitle(page)
     const author = await getArtist(page)
     const path = await getUrl(page)
@@ -56,7 +63,7 @@ const scraper = async () => {
   await browser.close();
 
   // save as json file
-  fs.writeFile('songs.json', JSON.stringify(songs), (err) => {
+  fs.writeFile('songs3.json', JSON.stringify(songs), (err) => {
     if (err) throw err;
     console.log('The file has been saved!');
   })
