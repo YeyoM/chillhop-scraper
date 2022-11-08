@@ -99,7 +99,7 @@ const urls = [
   'https://chillhop.com/releases/sleepy-fish-everything-fades-to-blue/',
   'https://chillhop.com/releases/sleepy-fish-colors-fade/',
   */
-  
+  /*
   'https://chillhop.com/releases/canary-forest/',
   'https://chillhop.com/releases/montell-fish-imagination/',
   'https://chillhop.com/releases/ezzy-ny90/',
@@ -148,8 +148,8 @@ const urls = [
   'https://chillhop.com/releases/dryhope-white-oak/',
   'https://chillhop.com/releases/dontcry-nokiaa-stray/',
   'https://chillhop.com/releases/psalm-trees-guillaume-muschalle-celeste/',
+  */
   
-  /*
   'https://chillhop.com/releases/miscel-the-other-side/',
   'https://chillhop.com/releases/cygn-discover/',
   'https://chillhop.com/releases/kyle-mcevoy-stan-forebee-bloom/',
@@ -192,7 +192,7 @@ const urls = [
   'https://chillhop.com/releases/faces/',
   'https://chillhop.com/releases/love-from-ngc-7318/',
   'https://chillhop.com/releases/melting-ice/',
-  */
+  
 ]
 
 // export the array

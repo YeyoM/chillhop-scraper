@@ -106,7 +106,7 @@ const scraper = async () => {
   await browser.close();
 
   // save as json file
-  fs.writeFile('songs8.json', JSON.stringify(songs), (err) => {
+  fs.writeFile('songs9.json', JSON.stringify(songs), (err) => {
     if (err) throw err;
     console.log('The file has been saved!');
   })
