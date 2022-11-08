@@ -14,6 +14,9 @@ const getFirst = async (page) => {
   await page.click('[class^="no-ajaxy playSong play-button track"]')
   // console.log(first)
   // return first
+
+  // wait 2 seconds
+  await page.waitForTimeout(2000)
 }
 
 const getTitle = async (page) => {
@@ -21,7 +24,6 @@ const getTitle = async (page) => {
     const title = document.querySelector('.jp-title').innerText
     return title
   })
-  console.log(title)
   return title
 }
 
@@ -50,11 +52,17 @@ const main = async () => {
 
   console.log('browser launched.')
 
-  await page.goto('https://chillhop.com/releases/allem-iverson-x-little-blue-beattape-vol-4/'/*, {waitUntil: 'networkidle0'}*/)
+  await page.goto('https://chillhop.com/releases/teddy-roxpin-beattape-vol-3/'/*, {waitUntil: 'networkidle0'}*/)
 
-  console.log('page loaded...')
+  console.log('page loaded. . .')
 
   await getFirst(page)
+
+  console.log('first clicked. . .')
+
+  // get html
+  // const html = await page.content()
+  // console.log(html)
 
   const title = await getTitle(page)
   const author = await getArtist(page)
