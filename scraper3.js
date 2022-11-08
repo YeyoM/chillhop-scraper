@@ -312,7 +312,7 @@ const scraper = async () => {
   await browser.close();
 
   // save as json file
-  fs.writeFile('songs5.json', JSON.stringify(songs), (err) => {
+  fs.writeFile('songs6.json', JSON.stringify(songs), (err) => {
     if (err) throw err;
     console.log('The file has been saved!');
   })
