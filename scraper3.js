@@ -8,6 +8,7 @@ let title = ''
 let author = ''
 let path = ''
 let id = ''
+let albumUrl
 
 let urls = [
   'https://chillhop.com/releases/teddy-roxpin-beattape-vol-3/',
@@ -42,7 +43,64 @@ let urls = [
   'https://chillhop.com/releases/montauk-paddling/',
   'https://chillhop.com/releases/reflections/',
   'https://chillhop.com/releases/kissamile-timelapse/',
-  'https://chillhop.com/releases/blue-moment/'
+  'https://chillhop.com/releases/blue-moment/',
+  'https://chillhop.com/releases/glow/',
+  'https://chillhop.com/releases/parasols1/',
+  'https://chillhop.com/releases/riverside/',
+  'https://chillhop.com/releases/sleepy-fish-x-philanthrope-awtf2/',
+  'https://chillhop.com/releases/chillhop-essentials-spring-2022/',
+  'https://chillhop.com/releases/everyday/',
+  'https://chillhop.com/releases/cygn-night-fishing/',
+  'https://chillhop.com/releases/somber-sky/',
+  'https://chillhop.com/releases/green-tea/',
+  'https://chillhop.com/releases/santiago/',
+  'https://chillhop.com/releases/fieldstudies1/',
+  'https://chillhop.com/releases/letters/',
+  'https://chillhop.com/releases/cygn-tropical-midnight/',
+  'https://chillhop.com/releases/repent/',
+  'https://chillhop.com/releases/ending/',
+  'https://chillhop.com/releases/reunion/',
+  'https://chillhop.com/releases/leaf-contour/',
+  'https://chillhop.com/releases/in-my-head/',
+  'https://chillhop.com/releases/rewind/',
+  'https://chillhop.com/releases/parkbench-epiphany-antimidas/',
+  'https://chillhop.com/releases/maydee-la-zona/',
+  'https://chillhop.webflow.io/releases/chillhop-essentials-winter-2021/v4',
+  'https://chillhop.com/releases/ezzy-hung-up/',
+  'https://chillhop.com/releases/teddy-roxpin-beattape-vol-3/',
+  'https://chillhop.webflow.io/releases/philanthrope-mommy-invisible/nv-s-bl',
+  'https://chillhop.com/releases/aviino-cocoon/',
+  'https://chillhop.com/releases/hanz-on-the-other-side/',
+  'https://chillhop.com/releases/smile-high-teddy-roxpin-endless-beginnings/',
+  'https://chillhop.com/releases/inside-a-saltwater-room/',
+  'https://chillhop.webflow.io/releases/chillhop-essentials-fall-2021/v4',
+  'https://chillhop.com/releases/fantompower-on-a-walk/',
+  'https://chillhop.com/releases/middle-school-passing-notes/',
+  'https://chillhop.com/releases/ruck-p-places/',
+  'https://chillhop.com/releases/juan-rios-meraki/',
+  'https://chillhop.com/releases/juan-rios-what-if-i-told-you/',
+  'https://chillhop.com/releases/makzo-wanderlust/',
+  'https://chillhop.com/releases/chillhop-music-sessions/',
+  'https://chillhop.com/releases/toonorth-aftersome/',
+  'https://chillhop.com/releases/toonorth-dreamstate/',
+  'https://chillhop.com/releases/toonorth-lavish/',
+  'https://chillhop.com/releases/sleepy-fish-mommy-kinship/',
+  'https://chillhop.com/releases/misha-jussi-halme-bliss-a-felicidade-ep/',
+  'https://chillhop.com/releases/chillhop-essentials-summer-2021/',
+  'https://chillhop.webflow.io/releases/chillhop-essentials-summer-2021/v4',
+  'https://chillhop.com/releases/evil-needle-sound-escapes/',
+  'https://chillhop.com/releases/timezones-nostalgia/',
+  'https://chillhop.com/releases/timezones-sunny-in-saint-petersburg/',
+  'https://chillhop.com/releases/timezones-soul-samba/',
+  'https://chillhop.com/releases/swum-cycles/',
+  'https://chillhop.com/releases/cygn-into-the-past/',
+  'https://chillhop.com/releases/cygn-lonely-waves/',
+  'https://chillhop.com/releases/knowmadic-tba/',
+  'https://chillhop.com/releases/chillhop-essentials-spring-2021/',
+  'https://chillhop.com/releases/aarigod-forest-lore/',
+  'https://chillhop.com/releases/psalm-trees-guillaume-muschalle-we-must-believe-in-spring/',
+  'https://chillhop.com/releases/psalm-trees-guillaume-muschalle-desire/',
+  'https://chillhop.com/releases/endless-sunday-vol-2/',
 ]
 
 const getTitle = async (page) => {
@@ -98,7 +156,6 @@ const isAlreadyIn = (title) => {
   return isAlready
 }
 
-
 const scraper = async () => {
 
   const browser = await puppeteer.launch()
@@ -111,6 +168,8 @@ const scraper = async () => {
 
     await page.goto(urls[i], {waitUntil: 'networkidle0'})
     console.log('new page loaded. . . ' + urls[i])
+
+    albumUrl = urls[i]
     
     await getFirst(page)
     console.log('go to first done. . .')
@@ -127,7 +186,7 @@ const scraper = async () => {
       console.log('path: ', path)
       id = getId(path)
       console.log('id: ', id)
-      songs.push({id, title, author, path})
+      songs.push({id, title, author, path, albumUrl})
       await clickNext(page)
       title = await getTitle(page)
       console.log('Next song title: ', title)
