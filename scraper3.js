@@ -1,6 +1,6 @@
-const puppeteer = require('puppeteer')
-const fs = require('fs')
-const urls = require('./urls')
+import { launch } from 'puppeteer'
+import { writeFile } from 'fs'
+import urls, { length } from './urls'
 
 let songs = []
 
@@ -66,13 +66,13 @@ const isAlreadyIn = (title) => {
 
 const scraper = async () => {
 
-  const browser = await puppeteer.launch()
+  const browser = await launch()
   console.log('browser launched. . .')
 
   const page = await browser.newPage()
   console.log('new page opened. . .')
 
-  for (let i = 0; i < urls.length; i++) {
+  for (let i = 0; i < length; i++) {
 
     await page.goto(urls[i], {waitUntil: 'networkidle0'})
     console.log('new page loaded. . . ' + urls[i])
@@ -106,9 +106,9 @@ const scraper = async () => {
   await browser.close();
 
   // save as json file
-  fs.writeFile('songs9.json', JSON.stringify(songs), (err) => {
+  writeFile('songs9.json', JSON.stringify(songs), (err) => {
     if (err) throw err;
-    console.log('The file has been saved!');
+    console.log('The file has been saved!')
   })
 
 }
